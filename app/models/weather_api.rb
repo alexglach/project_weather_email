@@ -2,17 +2,19 @@ class WeatherAPI
 
   include HTTParty
   BASE_URI = 'http://api.wunderground.com/api/'
-  KEY = ENV['WUNDERGROUND_KEY']
+  KEY = ENV['WUNDERGROUND_KEY'] || ENV['wunderground_key']
   CONDITIONS = '/conditions/q/'
   ALMANAC = '/almanac/q/'
 
 
+  # initialize API wrapper and get city and state into correct format
   def initialize(user_city)
     city_state_array = user_city.split(', ')
     @city = city_state_array[0].gsub(' ', '_')
     @state = city_state_array[1]
   end
-
+ 
+  # compare current weather to average historical high and low temps for this day and return necessary results to customize email
   def get_comparison_result
     current = get_current_weather
     average_temps = get_average_temp
@@ -33,9 +35,11 @@ class WeatherAPI
     }
   end
 
+  # get current weather information from Wunderground API
   def get_current_weather
     full_url = build_url(CONDITIONS)
     current_observation = HTTParty.get(full_url)["current_observation"]
+    # uncomment the next object and comment the line above in order to test app functionality without making API cals
     # current_observation = {
     #   "temp_f" => "30",
     #   "weather" => "Partly Cloudy",
@@ -49,6 +53,7 @@ class WeatherAPI
             }
   end
 
+  # get average temperature for this day from Wunderground API
   def get_average_temp
     full_url = build_url(ALMANAC)
     history = HTTParty.get(full_url)["almanac"]
@@ -62,6 +67,7 @@ class WeatherAPI
     }
   end
 
+  # build full API request based on which table is being targeted
   def build_url(table)
     return BASE_URI + KEY + table + @state + "/" + @city + ".json"   
   end
