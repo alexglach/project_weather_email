@@ -1,6 +1,9 @@
 <p>Hi <%= @user.email %>,<p>
 
-<p>It's <%= @temp %> degrees outside and <%= @desc %> in <%= @user.city %>. Hope you have a great day and enjoy the discount!<p>
+<p>It's <%= @temp %> degrees and <%= @desc %> in <%= @user.city %>. Enjoy the discount and have a great day!<p>
+
 
 <p>Best,</p>
 <p>Alex</p>
+
+<p> P.S. <%= @pre_image_text %> <%= image_tag(@icon, style:"vertical-align: middle") %><p>

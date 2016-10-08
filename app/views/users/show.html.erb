@@ -1,6 +1,18 @@
-<h1>Hooray</h1>
-
-<%= @user.email %>
-
-<%= @user.city %>
-
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 full-form">
+    <h3>Weather Powered Email</h3>
+    <hr>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 signup-form">
+        <h3>Your sign up was successful!</h3>
+        <h3>Time to celebrate!</h3>
+        <div class="img-container">
+          <%= image_tag(@image) %>
+        </div>
+        <h5>Here's your info: </h5>
+        <h5>Email: <%= @user.email %> </h5>
+        <h5> Location: <%= @user.city %> </h5>
+      </div>
+    </div>
+  </div>
+</div>

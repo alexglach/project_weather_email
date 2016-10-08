@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       weather = WeatherAPI.new(@user.city)
       @conditions = weather.get_comparison_result
       send_mail(@user, @conditions)
-      flash[:success] = "You've subscribed to Weather Email List!"
+      flash[:success] = "You've subscribed to the Weather Email List!"
       redirect_to @user
     else
       flash.now[:danger] = "Sorry! There's an error in your sign-up"
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @image = GiphyAPI.getRandomGIF("beach")
   end
 
 
@@ -34,12 +35,15 @@ class UsersController < ApplicationController
     subject = ""
     if conditions[:internal_desc] == "Nice"
       subject = "It's nice out! Enjoy a discount on us."
+      pre_image_text = "Enjoy the "
     elsif conditions[:internal_desc] == "Not Nice"
       subject = "Not so nice out? That's okay, enjoy a discount on us."
+      pre_image_text = "Sorry about the "
     else
       subject = "Enjoy a discount on us."
+      pre_image_text = "Just your average day of "
     end
-    UserMailer.discount(user, conditions, subject).deliver!
+    UserMailer.discount(user, conditions, subject, pre_image_text).deliver!
   end
 
 
