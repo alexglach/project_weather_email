@@ -2,7 +2,7 @@ class WeatherAPI
 
   include HTTParty
   BASE_URI = 'http://api.wunderground.com/api/'
-  KEY = ENV['wunderground_key']
+  KEY = ENV['WUNDERGROUND_KEY']
   CONDITIONS = '/conditions/q/'
   ALMANAC = '/almanac/q/'
 
