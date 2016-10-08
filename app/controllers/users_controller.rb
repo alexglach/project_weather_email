@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     if num == 0
       return ["Don't even look out the window. Here's what it looks like: ", "We want to you to get out there and enjoy the day, so we're sending you a discount. Get excited!",  "Enjoy the "]
     elsif num == 1
-      return ["If you've looked outside, you probably have one goal for the day: ", "But we don't want that to happen, so we're sending you a discount. Hooray!" "Sorry again about the "]
+      return ["If you've looked outside, you probably have one goal for the day: ", "But we don't want that to happen, so we're sending you a discount. Hooray!", "Sorry again about the "]
     else 
       return ["The weather is what is. Neither good or bad. We know what you're thinking:", "So to add a little excitement to your day, we're sending you a discount. Yeah!",  "Don't be too mad at the"]
     end

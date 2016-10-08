@@ -37,8 +37,8 @@ class WeatherAPI
     full_url = build_url(CONDITIONS)
     # current_observation = HTTParty.get(full_url)["current_observation"]
     current_observation = {
-      "temp_f" => "68",
-      "weather" => "Sunny",
+      "temp_f" => "30",
+      "weather" => "Partly Cloudy",
       "precip_today_in" => "0.00",
       "icon_url" => "http://icons.wxug.com/i/c/k/mostlycloudy.gif"
     }
