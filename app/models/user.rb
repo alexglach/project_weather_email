@@ -1,0 +1,7 @@
+class User < ApplicationRecord
+
+  validates :email, 
+           uniqueness: true, 
+           presence: true
+  validates :city, presence: true
+end
