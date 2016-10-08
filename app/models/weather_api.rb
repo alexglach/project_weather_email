@@ -35,13 +35,13 @@ class WeatherAPI
 
   def get_current_weather
     full_url = build_url(CONDITIONS)
-    # current_observation = HTTParty.get(full_url)["current_observation"]
-    current_observation = {
-      "temp_f" => "30",
-      "weather" => "Partly Cloudy",
-      "precip_today_in" => "0.00",
-      "icon_url" => "http://icons.wxug.com/i/c/k/mostlycloudy.gif"
-    }
+    current_observation = HTTParty.get(full_url)["current_observation"]
+    # current_observation = {
+    #   "temp_f" => "30",
+    #   "weather" => "Partly Cloudy",
+    #   "precip_today_in" => "0.00",
+    #   "icon_url" => "http://icons.wxug.com/i/c/k/mostlycloudy.gif"
+    # }
     return {temp: current_observation["temp_f"], 
             description: current_observation["weather"],
             precip: current_observation["precip_1hr_in"].to_f,
@@ -51,11 +51,11 @@ class WeatherAPI
 
   def get_average_temp
     full_url = build_url(ALMANAC)
-    # history = HTTParty.get(full_url)["almanac"]
-    # high = history["temp_high"]["normal"]["F"]
-    # low = history["temp_low"]["normal"]["F"]
-    high = "64"
-    low = "50"
+    history = HTTParty.get(full_url)["almanac"]
+    high = history["temp_high"]["normal"]["F"]
+    low = history["temp_low"]["normal"]["F"]
+    # high = "64"
+    # low = "50"
     return {
       high: high,
       low: low
