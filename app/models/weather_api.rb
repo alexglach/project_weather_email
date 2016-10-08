@@ -17,12 +17,12 @@ class WeatherAPI
 
   def get_comparison_result
     current = get_current_weather
-    average_temp = get_average_temp
+    average_temps = get_average_temp
     internal_desc = ""
-    if current[:temp].to_f - 5 >= average_temp.to_f || 
+    if current[:temp].to_f - 5 >= average_temps[:high].to_f || 
        current[:description] == "Sunny"
       internal_desc = "Nice"
-    elsif current[:temp].to_f + 5 <= average_temp.to_f || current[:precip] > 0
+    elsif current[:temp].to_f + 5 <= average_temps[:low].to_f || current[:precip] > 0
       internal_desc = "Not Nice"
     else
       internal_desc = "Normal"
@@ -36,22 +36,27 @@ class WeatherAPI
 
   def get_current_weather
     full_url = build_url(CONDITIONS)
-    # current_observation = HTTParty.get(full_url)["current_observation"]
-    current_observation = {
-      "temp_f" => "68",
-      "weather" => "Partly Cloudy",
-      "precip_today_in" => "0.01"
-    }
+    current_observation = HTTParty.get(full_url)["current_observation"]
+    # current_observation = {
+    #   "temp_f" => "68",
+    #   "weather" => "Partly Cloudy",
+    #   "precip_today_in" => "0.01"
+    # }
     return {temp: current_observation["temp_f"], 
             description: current_observation["weather"],
-            precip: current_observation["precip_today_in"].to_f}
+            precip: current_observation["precip_1hr_in"].to_f}
   end
 
   def get_average_temp
     full_url = build_url(ALMANAC)
-    # average = HTTParty.get(full_url)["almanac"]["temp_high"]["normal"]["F"]
-    average = "64"
-    return average
+    history = HTTParty.get(full_url)["almanac"]
+    high = history["temp_high"]["normal"]["F"]
+    low = history["temp_low"]["normal"]["F"]
+    # average = "64"
+    return {
+      high: high,
+      low: low
+    }
   end
 
   def build_url(table)
