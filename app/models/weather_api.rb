@@ -38,8 +38,8 @@ class WeatherAPI
     # current_observation = HTTParty.get(full_url)["current_observation"]
     current_observation = {
       "temp_f" => "68",
-      "weather" => "Partly Cloudy",
-      "precip_today_in" => "0.01",
+      "weather" => "Sunny",
+      "precip_today_in" => "0.00",
       "icon_url" => "http://icons.wxug.com/i/c/k/mostlycloudy.gif"
     }
     return {temp: current_observation["temp_f"], 
