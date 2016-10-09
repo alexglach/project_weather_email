@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   def self.send_signup_mail(user, conditions)
     subject = ""
+    # set GIF and email text based on weather conditions
     if conditions[:internal_desc] == "Nice"
       subject = "It's nice out! Enjoy a discount on us."
       pre_image_texts = User.get_pre_image_texts(0)
@@ -21,6 +22,7 @@ class User < ApplicationRecord
       pre_image_texts = User.get_pre_image_texts(2)
       gif = "https://media.giphy.com/media/l0K3ZRJ1IXfxgmMQU/giphy.gif"
     end
+    # call mailer method and deliver mail based on weather conditions
     UserMailer.discount(user, conditions, subject, pre_image_texts, gif).deliver!
   end
 
