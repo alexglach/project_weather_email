@@ -7,9 +7,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      weather = WeatherAPI.new(@user.city)
-      @conditions = weather.get_comparison_result
-      User.send_signup_mail(@user, @conditions)
       flash[:success] = "You've subscribed to the Weather Email List!"
       redirect_to @user
     else
