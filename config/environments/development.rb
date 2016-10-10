@@ -11,6 +11,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
 
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
