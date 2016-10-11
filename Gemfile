@@ -41,6 +41,8 @@ group :development, :test do
   gem 'hirb'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

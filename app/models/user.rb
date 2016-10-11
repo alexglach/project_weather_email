@@ -9,12 +9,12 @@ class User < ApplicationRecord
     User.all.each do |user|
       weather = WeatherAPI.new(user.city)
       conditions = weather.get_comparison_result
-      User.send_weather_mail(user, conditions)
+      User.send_weather_email(user, conditions)
     end
   end
 
 
-  def self.send_weather_mail(user, conditions)
+  def self.send_weather_email(user, conditions)
     subject = ""
     # set GIF and email text based on weather conditions
     if conditions[:internal_desc] == "Nice"
@@ -30,8 +30,8 @@ class User < ApplicationRecord
       pre_image_texts = User.get_pre_image_texts(2)
       gif = "https://media.giphy.com/media/l0K3ZRJ1IXfxgmMQU/giphy.gif"
     end
-    # call mailer method and deliver mail based on weather conditions
     UserMailer.discount(user, conditions, subject, pre_image_texts, gif).deliver!
+    return subject
   end
 
   def self.get_pre_image_texts(num)
