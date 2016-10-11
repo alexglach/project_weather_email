@@ -8,7 +8,7 @@ class User < ApplicationRecord
   def self.send_all_weather_emails
     User.all.each do |user|
       weather = WeatherAPI.new(user.city)
-      conditions = weather.get_comparison_result
+      conditions = weather.get_comparison_result(weather.get_current_weather, weather.get_average_temp)
       User.send_weather_email(user, conditions)
     end
   end

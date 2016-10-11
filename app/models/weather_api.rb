@@ -15,9 +15,7 @@ class WeatherAPI
   end
  
   # compare current weather to average historical high and low temps for this day and return necessary results to customize email
-  def get_comparison_result
-    current = get_current_weather
-    average_temps = get_average_temp
+  def get_comparison_result(current, average_temps)
     internal_desc = ""
     if current[:temp].to_f - 5 >= average_temps[:high].to_f || 
        ["Sunny", "Clear"].include?(current[:description])
@@ -56,7 +54,7 @@ class WeatherAPI
   # get average temperature for this day from Wunderground API
   def get_average_temp
     full_url = build_url(ALMANAC)
-    history = HTTParty.get(full_url)["almanac"]
+    # history = HTTParty.get(full_url)["almanac"]
     # high = history["temp_high"]["normal"]["F"]
     # low = history["temp_low"]["normal"]["F"]
     # uncomment the two lines below and comment the two above to test app functionality without making API calls

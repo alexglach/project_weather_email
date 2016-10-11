@@ -52,19 +52,22 @@ RSpec.describe User, type: :model do
     before do
       new_user.save!
     end
-    it 'creates specific subject line for nice weather' do
+    it 'creates specific subject line for nice weather and sends email' do
       conditions[:internal_desc] = "Nice"
       expect(User.send_weather_email(new_user, conditions)).to eq("It's nice out! Enjoy a discount on us.")
+      expect{User.send_weather_email(new_user, conditions)}.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
-    it 'creates specific subject line for not nice weather' do
+    it 'creates specific subject line for not nice weather and sends email' do
       conditions[:internal_desc] =  "Not Nice"
       expect(User.send_weather_email(new_user, conditions)).to eq("Not so nice out? That's okay, enjoy a discount on us.")
+      expect{User.send_weather_email(new_user, conditions)}.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
 
-    it 'creates specific subject line for average weather' do
+    it 'creates specific subject line for average weather and sends email' do
       conditions[:internal_desc] =  "Normal"
       expect(User.send_weather_email(new_user, conditions)).to eq("Enjoy a discount on us.")
+      expect{User.send_weather_email(new_user, conditions)}.to change(ActionMailer::Base.deliveries, :count).by(1)
     end
   end
 
