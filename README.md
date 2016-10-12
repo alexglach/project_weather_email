@@ -13,14 +13,18 @@ When you want to send an email to all subscribed users, open up the Rails consol
 
 # Technical Highlights
 
-Email validation:
-
+# Email validation:
 Emails are validated for uniqueness at two levels. The first is at the model level, where, in user.rb, uniqueness for the email is set to true. The second is at the database level, where a unique index is set on the email attribute of user.
 
-Weather API: The weather_api.rb file contains the methods for making API calls based on a user's selected location. This class receives a "city, STATE" string upon initialization, parses it into the correct components, and builds url strings for current and historical data available in the Wunderground API. The class then builds return objects necessary to build custom emails.
+#Weather API: 
+The weather_api.rb file contains the methods for making API calls based on a user's selected location. This class receives a "city, STATE" string upon initialization, parses it into the correct components, and builds url strings for current and historical data available in the Wunderground API. The class then builds return objects necessary to build custom emails.
 
 Since Wunderground has limits on the number of calls available per day on their free tier, the file has lines that can be uncommented in order to set hard-coded responses for testing purposes. 
 
-Giphy API: The giphy_api.rb file contains the methods for making API calls to the Giphy API. This is used upon user sign-up to produce a random GIF with tag "celebrate", along with including GIFs in the email sends. 
+#Giphy API: 
+The giphy_api.rb file contains the methods for making API calls to the Giphy API. This is used upon user sign-up to produce a random GIF with tag "celebrate", along with including GIFs in the email sends. 
+
+#Test Suite:
+user_spec.rb and weather_api_spec.rb provide test coverage for user creation and the logic to determine what content is sent in an email. 
 
 
