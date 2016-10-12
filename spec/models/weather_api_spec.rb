@@ -22,11 +22,6 @@ describe WeatherAPI do
       expect(weather.get_comparison_result(current, average)[:internal_desc]).to eq('Nice') 
     end
 
-    it 'returns nice for clear' do
-      current[:description] = 'Clear' 
-      expect(weather.get_comparison_result(current, average)[:internal_desc]).to eq('Nice') 
-    end
-
     it 'returns nice for 5 degrees over average' do
       current[:temp] = '75.1'
       expect(weather.get_comparison_result(current, average)[:internal_desc]).to eq('Nice') 
