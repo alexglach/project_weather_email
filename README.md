@@ -8,7 +8,7 @@ The live version of the app is available at weather-powered-email.herokuapp.com.
 
 To run the app locally, clone the repo to your local machine, run 'rake db:migrate', and then start a local Rails server and go to localhost:3000 in your browser of choice. Once the page loads, enter your email address and choose a city from the dropdown list. You can do this as many times as you want, but only once per email address.
 
-When you want to send an email to all subscribed users, open up the Rails console and enter "User.send_all_weather_emails". This will send an email to each email address with custom content based on the weather at that user's location. If you're in a development environment, the email sends will not send an actual email. but instead will display the emails in a new browser tab by using the Letter Opener gem. 
+When you want to send an email to all subscribed users, open up the Rails console and enter "User.send_all_weather_emails". This will send an email to each email address with custom content based on the weather at that user's location. If you're in a development environment, the email sends will not send an actual email, but instead will display the emails in a new browser tab by using the Letter Opener gem. 
 
 
 # Technical Highlights
