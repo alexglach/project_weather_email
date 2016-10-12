@@ -18,7 +18,7 @@ class WeatherAPI
   def get_comparison_result(current, average_temps)
     internal_desc = ""
     if current[:temp].to_f - 5 >= average_temps[:high].to_f || 
-       ["Sunny", "Clear"].include?(current[:description])
+       current[:description] == "Sunny"
       internal_desc = "Nice"
     elsif current[:temp].to_f + 5 <= average_temps[:low].to_f || current[:precip] > 0
       internal_desc = "Not Nice"
