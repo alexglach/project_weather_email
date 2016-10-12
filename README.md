@@ -2,7 +2,7 @@
 
 Weather Powered Email allows a user to sign up with an email address and a location, which they choose from a list of the 100 most populated cities in the United States. Upon sign-up, the user will receive an email to their submitted email address which contains a personalized message based on the weather at that location. The weather data is pulled from the Wunderground API.
 
-The live version of the app is available at www.weather-based-email.herokuapp.com.
+The live version of the app is available at https://weather-based-email.herokuapp.com/.
 
 # Instructions
 
