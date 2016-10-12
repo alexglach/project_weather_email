@@ -46,7 +46,7 @@ class WeatherAPI
     # }
     return {temp: current_observation["temp_f"], 
             description: current_observation["weather"],
-            precip: current_observation["precip_1hr_in"].to_f,
+            precip: current_observation["precip_today_in"].to_f,
             icon: current_observation["icon_url"]
             }
   end
